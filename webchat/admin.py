@@ -1,3 +1,8 @@
-from django.contrib import admin
+from django.contrib.admin import AdminSite
 
-# Register your models here.
+
+class WCAdminChat(AdminSite):
+    site_header = "Web Chat"
+    site_title = "Web Chat"
+
+admin_site = WCAdminChat(name='wcadmin')
