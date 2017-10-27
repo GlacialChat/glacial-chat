@@ -1,0 +1,43 @@
+{% extends 'Python101/base.html' %}
+
+{% load str_funcs %}
+{% load static %}
+{% block other_buttons %}
+<a href="{% url 'coding:index' %}">
+    Main page
+</a>
+{% endblock %}
+
+{% block content %}
+{% if form.errors %}
+    <h5 class="error">
+        Please fill all fields
+    </h5>
+
+{% endif %}
+
+<h2>
+    Write a code:
+</h2>
+
+<br />
+<form method="post" class="submit_form" name="submit_form" id="submit_form">
+    {% csrf_token %}
+    <h5>
+        Title:
+    </h5>
+    <input type="text" name="name" id="name" value="{{ form.name.value|replace_none }}" />
+
+    <h5>
+        Description:
+    </h5>
+    <textarea rows="3" cols="50" name="desc" id="desc">{{ form.desc.value|replace_none }}</textarea>
+
+    <h5>
+        Code:
+    </h5>
+    <textarea rows="4" cols="50" name="code" id="code">{{ form.code.value|replace_none }}</textarea>
+
+    <input type="submit" value="Submit" class="submitbutton" />
+</form>
+{% endblock %}

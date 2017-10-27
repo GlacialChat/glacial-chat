@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'Python101/normalize.css' %}" />
+    {% block stylesheet %}
+    <link rel="stylesheet" type="text/css" href="{% static 'Python101/style.css' %}" />
+    {% endblock %}
+    <meta charset="UTF-8">
+    <title>{% block title_name %}Python 101{% endblock %}</title>
+</head>
+
+<body>
+    <div class="headers">
+        <span id="header_title">
+            {% block title %}
+            Learn Python
+            {% endblock %}
+        </span>
+
+        <div class="header_buttons">
+            <a href="{% url 'admin:index' %}">
+                Admin
+            </a>
+            {% block other_buttons %}
+            {% endblock %}
+        </div>
+
+    </div>
+    {% block content %}{% endblock %}
+</body>
+</html>

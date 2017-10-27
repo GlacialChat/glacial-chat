@@ -1,0 +1,120 @@
+body {
+    margin: 0;
+    min-width: 325px;
+    max-width: 2000px;
+    background-color: aliceblue;
+}
+
+.headers {
+    top: 0;
+    width: 100%;
+    min-width: 325px;
+    max-width: 2000px;
+    position: fixed;
+    overflow: hidden;
+    background-color: antiquewhite;
+    border: 0.02em solid rgba(255, 193, 7, 0.35);
+
+}
+
+#header_title {
+    font-family: cursive;
+    font-size: 150%;
+    float: left;
+    margin: 1% 1% 1% 1%;
+
+}
+
+.headers a{
+    font-family: cursive;
+    display: block;
+    color: #ffffff;
+    font-size: 120%;
+    float: right;
+    border: 1px solid #b9a0a0;
+    border-radius: 0.4em;
+    margin: 1% 1% 1% 1%;
+    padding: 0.3% 0.8% 0.3% 0.8%;
+    text-decoration: none;
+    background-color: #c7b125;
+}
+
+.headers a:hover{
+    background-color: lightgreen;
+}
+
+/* end headers */
+
+.section {
+    margin-top: 15%;
+    max-margin-top: 10px;
+    margin-left: 2%;
+    margin-right: 2%;
+    margin-bottom: 4%;
+}
+
+
+.section h3 {
+    text-align: left;
+    color: blue;
+    font-style: bold;
+    font-family: monospace;
+    font-size: 200%;
+}
+
+
+.code_desc {
+    font-size: 130%;
+    margin-left: 5%;
+    border: solid aquamarine;
+    border-radius: 0.4em;
+}
+
+.code_desc p {
+    text-align: auto;
+    font-style: italic;
+    margin-top: 0.8%;
+    margin-bottom: 5%;
+    padding-left: 1%;
+    padding-right: 1%;
+    padding-bottom: 0%;
+}
+
+
+.cond_desc pre {
+    font-style: normal;
+    text-align: left;
+    padding: 1% 1% 1% 1%;
+    margin: 0.2% 0.2% 0.2% 0.2%;
+    border-radius: 0.4em;
+    background-color: rgba(212, 216, 220, 0.23);
+}
+
+.submit_form {
+    margin-left: 5%;
+    margin-right: 5%;
+    font-size: 150%;
+}
+
+.submit_form #name, .submit_form textarea {
+    font-size: 100%;
+    resize: none;
+    border: 0.05em solid #57D6C7;
+    border-radius: 0.2em;
+    width: 100%;
+}
+
+.submit_form .submitbutton {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    padding: 10px 15px 11px;
+    font-size: 18px;
+    background-color: #57d6c7;
+    font-weight: bold;
+    text-shadow: 1px 1px #57D6C7;
+    color: #ffffff;
+    border-radius: 0.2em;
+    border: 0.05em solid #57D6C7;
+    cursor: pointer;
+    box-shadow: 0 0.03em 0 rgba(255, 255, 255, 0.5) inset;
+}
