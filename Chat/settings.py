@@ -29,7 +29,7 @@ DEBUG = True
 # Application definition
 
 INSTALLED_APPS = [
-    'chatbot.apps.chatbot',
+    'webchat.apps.webchat',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
