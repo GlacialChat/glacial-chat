@@ -14,11 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from webchat.admin import admin_site
 from django.conf.urls import url, include
 
 urlpatterns = [
     url(r'^', include('webchat.urls')),
-    url(r'manage/', admin_site.urls),
     url(r'^admin/', admin.site.urls),
 ]

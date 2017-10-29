@@ -8,5 +8,5 @@ class Index(generic.TemplateView):
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated():
-            return HttpResponseRedirect(reverse('wcadmin:index'))
+            return HttpResponseRedirect(reverse('wcadmin:index?next=webapp:index'))
         return super(Index, self).dispatch(request, *args, **kwargs)
