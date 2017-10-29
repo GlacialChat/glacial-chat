@@ -80,9 +80,9 @@ WSGI_APPLICATION = 'Chat.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
-DATABASES = {
-    'default': dj_database_url.config(conn_max_age=500)
-}
+DATABASES = {'default': dj_database_url.config(conn_max_age=500)}
+# Change 'default' database configuration with $DATABASE_URL.
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
