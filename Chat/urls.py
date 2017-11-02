@@ -18,5 +18,5 @@ from . import admin
 
 urlpatterns = [
     url(r'^', include('webchat.urls')),
-    url(r'^manage/', admin.admin_site.urls, name='admins'),
+    url(r'^manage/', admin.admin_site.urls, name='admin'),
 ]
