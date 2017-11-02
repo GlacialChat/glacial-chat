@@ -8,5 +8,5 @@ class Index(generic.TemplateView):
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated():
-            return HttpResponseRedirect(reverse('admin:index') + '?next=/')
+            return HttpResponseRedirect(reverse('admin:index') + "login/?next=" + reverse('webchat:index'))
         return super(Index, self).dispatch(request, *args, **kwargs)
