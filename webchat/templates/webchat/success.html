@@ -1,0 +1,33 @@
+{% extends 'webchat/base.html' %}
+
+{% block links %}
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
+</li>
+{% endblock %}
+
+{% block content %}
+<main role="main" class="container">
+    <div class="jumbotron">
+        <p class="lead message"></p>
+        <small class="text-muted">If it does not redirect automatically, click <a rel="redirect" href="{% url 'webchat:index' %}">here</a>.</small>
+    </div>
+</main>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    async function countdown() {
+        console.log(1);
+        for (var i = 5; i >= 0; i--) {
+            $(".message").text("Your message has successfully been posted, you will be redirected back in " + i + " seconds");
+            await sleep(1000);
+        }
+        window.location.href = '{% url 'webchat:index' %}';
+    }
+    countdown();
+</script>
+{% endblock %}

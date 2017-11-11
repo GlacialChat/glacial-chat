@@ -1,89 +1,37 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <!-- Meta tags -->
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
-    <style type="text/css">
-        .navbar {
-            position: fixed;
-        }
-        body {
-            min-height: 75rem;
-            padding-top: 4.5rem;
-            padding-bottom: 5rem;
-        }
+{% extends 'webchat/base.html' %}
 
+{% block links %}
+<li class="nav-item">
+    <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
+</li>
+{% endblock %}
 
-    </style>
+{% block content %}
+<main role="main" class="container">
+    <div class="jumbotron" id="J1">
+        <h1>J1</h1>
+        <h3>User [name] said on [date] at [time]:</h3>
+        <p class="lead">Testing 1</p>
+        <a class="btn btn-lg btn-primary" href="#" role="button">A Button</a>
+    </div>
+    <div class="jumbotron" id="J2">
+        <h1>J2</h1>
+        <p class="lead">Testing 2</p>
+        <a class="btn btn-lg btn-primary" href="#" role="button">A Button</a>
+    </div>
+    <div class="jumbotron" id="J3">
+        <h1>J3</h1>
+        <p class="lead">Testing 3</p>
+        <a class="btn btn-lg btn-primary" href="#" role="button">A Button</a>
+    </div>
+</main>
 
-    <title>Title</title>
-</head>
-<body>
-    <!-- Nav bar -->
-    <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-        <span class="navbar-brand mb-0 h1">Chat</span>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="{% url 'webchat:index' %}">Home</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
-                </li>
-
-            </ul>
-            <form class="form-inline mt-2 mt-md-0" action="#" id="search-form">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success my-2 my-sm-0" type="submit" onclick="clicked()">Search</button>
-            </form>
-        </div>
-    </nav>
-
-    <!-- content -->
-    <main role="main" class="container">
-        <div class="jumbotron" id="J1">
-            <h1>J1</h1>
-            <p class="lead">Testing 1</p>
-            <a class="btn btn-lg btn-primary" href="#" role="button">A Button</a>
-        </div>
-        <div class="jumbotron" id="J2">
-            <h1>J2</h1>
-            <p class="lead">Testing 2</p>
-            <a class="btn btn-lg btn-primary" href="#" role="button">A Button</a>
-        </div>
-        <div class="jumbotron" id="J3">
-            <h1>J3</h1>
-            <p class="lead">Testing 3</p>
-            <a class="btn btn-lg btn-primary" href="#" role="button">A Button</a>
-        </div>
-    </main>
-
-    <main role="main" class="container">
-        <form action="/">
-            <textarea class="form-control" style="resize:none" rows=7 required></textarea>
-            <small id="passwordHelpBlock" class="form-text text-muted">Please enter the message you want to send and click "submit".</small>
-            <button class="btn btn-lg btn-success" type="submit" name="submit" style="margin-left: 0.2rem; margin-top: 0.5rem">submit</button>
-        </form>
-    </main>
-
-    <!--JS scripts-->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-
-    <script>
-
-        function clicked () {
-            $("#search-form")[0].action = '#' + $("#search-form")[0][0].value;
-            console.log('1');
-        };
-
-    </script>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
-</body>
-</html>
+<main role="main" class="container">
+    <form action="{% url 'webchat:success' %}" method="post">
+        {% csrf_token %}
+        <textarea class="form-control" name="message" id="message" style="resize:none" rows=7 required></textarea>
+        <small class="form-text text-muted">Please enter the message you want to send and click "submit".</small>
+        <button class="btn btn-lg btn-success" type="submit" name="submit" style="margin-left: 0.2rem; margin-top: 0.5rem">submit</button>
+    </form>
+</main>
+{% endblock %}
