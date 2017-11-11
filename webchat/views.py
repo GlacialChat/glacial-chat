@@ -9,6 +9,12 @@ from .models import ChatLog
 
 class Index(generic.TemplateView):
     template_name = 'webchat/index.html'
+    model = ChatLog
+
+    def get_context_data(self, **kwargs):
+        context = super(Index, self).get_context_data(**kwargs)
+        context['chatlogs'] = self.model.objects.order_by('-pub_date')
+        return context
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated():

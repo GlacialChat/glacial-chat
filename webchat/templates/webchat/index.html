@@ -1,5 +1,27 @@
 {% extends 'webchat/base.html' %}
 
+{% block styles %}
+<style>
+  .ctx-link {
+      display: inline-block;
+      position: fixed;
+      bottom: 1.4rem;
+      right: 1.4rem;
+      font-family: "Roboto", Corbel, Avenir, "Lucida Grande", "Lucida Sans", sans-serif;
+      font-size: 1.4rem;
+      list-style: none;
+      text-align: right;
+  }
+
+  .ctx-link a {
+      margin: 0.2rem 0.2rem;
+      padding-top: 0.3rem;
+      padding-bottom: 0.3rem;
+  }
+</style>
+{% endblock %}
+
+
 {% block links %}
 <li class="nav-item">
     <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
@@ -8,26 +30,28 @@
 
 {% block content %}
 <main role="main" class="container">
-    <div class="jumbotron" id="J1">
-        <h1>J1</h1>
-        <h3>User [name] said on [date] at [time]:</h3>
-        <p class="lead">Testing 1</p>
-        <a class="btn btn-lg btn-primary" href="#" role="button">A Button</a>
+    <ul class="ctx-link">
+        <li>
+            <a class="btn btn-success disabled" href="#">Top</a>
+        </li>
+        <li>
+            <a class="btn btn-success" href="#input-box">Post Message</a>
+        </li>
+
+    </ul>
+    {% for chatlog in chatlogs %}
+    <div class="jumbotron" id="log-{{ forloop.counter }}">
+        <h1>{{ chatlog.user }},</h1>
+        <h5 class="lead">On {{ chatlog.pub_date }} has said:</h5>
+        <p class="lead">{{ chatlog.message }}</p>
+        <a class="btn btn-lg btn-primary disabled" href="#" role="button">Read in full page</a>
     </div>
-    <div class="jumbotron" id="J2">
-        <h1>J2</h1>
-        <p class="lead">Testing 2</p>
-        <a class="btn btn-lg btn-primary" href="#" role="button">A Button</a>
-    </div>
-    <div class="jumbotron" id="J3">
-        <h1>J3</h1>
-        <p class="lead">Testing 3</p>
-        <a class="btn btn-lg btn-primary" href="#" role="button">A Button</a>
-    </div>
+    {% endfor %}
+
 </main>
 
 <main role="main" class="container">
-    <form action="{% url 'webchat:success' %}" method="post">
+    <form action="{% url 'webchat:success' %}" id="input-box" method="post">
         {% csrf_token %}
         <textarea class="form-control" name="message" id="message" style="resize:none" rows=7 required></textarea>
         <small class="form-text text-muted">Please enter the message you want to send and click "submit".</small>
