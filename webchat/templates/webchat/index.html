@@ -44,7 +44,7 @@
     <div class="jumbotron" id="log-{{ forloop.counter }}">
         <h1>{{ chatlog.user }},</h1>
         <h5 class="lead">On {{ chatlog.pub_date }} has said:</h5>
-        <p class="lead">{{ chatlog.message }}</p>
+        <p class="lead border border-info rounded">{{ chatlog.message }}</p>
         <a class="btn btn-lg btn-primary disabled" href="#" role="button">Read in full page</a>
     </div>
     {% endfor %}
