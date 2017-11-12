@@ -39,6 +39,7 @@
         </li>
 
     </ul>
+    { localtime on %}
     {% for chatlog in chatlogs %}
     <div class="jumbotron" id="log-{{ forloop.counter }}">
         <h1>{{ chatlog.user }},</h1>
@@ -47,6 +48,7 @@
         <a class="btn btn-lg btn-primary disabled" href="#" role="button">Read in full page</a>
     </div>
     {% endfor %}
+    {% endlocaltime %}
 
 </main>
 
