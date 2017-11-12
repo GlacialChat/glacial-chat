@@ -11,15 +11,27 @@
         }
         body {
             min-height: 75rem;
-            padding-top: 4.5rem;
+            padding-top: 10rem;
             padding-bottom: 5rem;
         }
+
+        header {
+            width: 100%;
+            top: 4rem;
+            position: fixed;
+	          padding: 2rem 0;
+	          background-color: #f9f9f9;
+            border-top: 0.05rem solid #e5e5e5;
+            border-bottom: 0.05rem solid #e5e5e5;
+	          text-align: center;
+	          z-index: 1;
+	  }
     </style>
     {% block styles %}
     {% endblock %}
 
     {% block title %}
-    <title>Title</title>
+    <title>Glacial Chat</title>
     {% endblock %}
 
 </head>
@@ -42,13 +54,14 @@
                 {% endblock %}
 
             </ul>
+            <!-- disabled -->
             <form class="form-inline mt-2 mt-md-0" action="#" id="search-form">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="search-btn btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                <input class="form-control mr-sm-2 disabled" type="search" placeholder="Search" aria-label="Search" readonly>
+                <button class="search-btn btn btn-outline-success my-2 my-sm-0 disabled" type="submit">Search</button>
             </form>
         </div>
     </nav>
-
+    <header>This site is still under active development, many features are still not yet implemented.</header>
     <!-- content -->
     {% block content %}
     {% endblock %}
