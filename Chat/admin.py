@@ -1,4 +1,5 @@
 from django.contrib.admin import AdminSite
+from django.contrib.auth import admin
 
 
 class WCAdminChat(AdminSite):
@@ -7,3 +8,5 @@ class WCAdminChat(AdminSite):
 
 
 admin_site = WCAdminChat(name='wcadmin')
+admin_site.register(admin.User)
+admin_site.register(admin.Group)
