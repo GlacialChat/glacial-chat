@@ -33,7 +33,7 @@ class Transcript(generic.TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(Transcript, self).get_context_data(**kwargs)
-        context['chatlogs'] = self.model.objects.order_by('-pub_date')
+        context['chatlogs'] = self.model.objects.order_by('pub_date')
         return context
 
     def post(self, request, *args, **kwargs):

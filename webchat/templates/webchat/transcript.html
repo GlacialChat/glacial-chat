@@ -3,9 +3,24 @@
 {% block styles %}
 <style>
     .logs {
-        margin: 2rem 3rem;
-
     }
+
+    .ctx-link {
+      display: inline-block;
+      position: fixed;
+      bottom: 1.4rem;
+      right: 1.4rem;
+      font-family: "Roboto", Corbel, Avenir, "Lucida Grande", "Lucida Sans", sans-serif;
+      font-size: 1.4rem;
+      list-style: none;
+      text-align: right;
+  }
+
+  .ctx-link a {
+      margin: 0.2rem 0.2rem;
+      padding-top: 0.3rem;
+      padding-bottom: 0.3rem;
+  }
 
 </style>
 {% endblock %}
@@ -13,8 +28,16 @@
 
 {% block content %}
 <main role="main" class="container">
-    <div class="jumbotron container logs-container">
-    <hr />
+    <ul class="ctx-link">
+        <li>
+            <a class="btn btn-success disabled" href="#">Top</a>
+        </li>
+        <li>
+            <a class="btn btn-success" href="#input-box">Post Message</a>
+        </li>
+
+    </ul>
+    <div class="container jumbotron logs-container">
     {% for chatlog in chatlogs %}
         <div id="message-{{ forloop.counter }}" class="logs">
             <a class="lead disabled" href="#">{{ chatlog.user }}, {{ chatlog.pub_date }}:</a>
