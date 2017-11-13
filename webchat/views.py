@@ -22,6 +22,29 @@ class Index(generic.TemplateView):
         return super(Index, self).dispatch(request, *args, **kwargs)
 
 
+class Transcript(generic.TemplateView):
+    model = ChatLog
+    template_name = 'webchat/transcript.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated():
+            return HttpResponseRedirect(reverse('admin:index') + "login/?next=" + reverse('webchat:index'))
+        return super(Transcript, self).dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(Transcript, self).get_context_data(**kwargs)
+        context['chatlogs'] = self.model.objects.order_by('-pub_date')
+        return context
+
+    def post(self, request, *args, **kwargs):
+        message = request.POST.get("message", None)
+        if message is None:
+            return HttpResponseRedirect(reverse('webchat:index'))
+        chat = ChatLog(message=message, user=request.user, pub_date=timezone.now())
+        chat.save()
+        return HttpResponseRedirect(reverse('webchat:transcript'))
+
+
 class Success(generic.DetailView):
     http_method_names = ['post']
     template_name = 'webchat/success.html'

@@ -52,6 +52,10 @@
         <p class="lead border border-info rounded">{{ chatlog.message }}</p>
         <a class="btn btn-lg btn-primary disabled" href="#" role="button">Read in full page</a>
     </div>
+    {% empty %}
+    <div class="jumbotron">
+        <h3>There isn't any chat logs at the moment, would you like to leave one?</h3>
+    </div>
     {% endfor %}
 
 </main>
