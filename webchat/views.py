@@ -18,7 +18,7 @@ class Index(generic.TemplateView):
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated():
-            return HttpResponseRedirect(reverse('admin:index') + "login/?next=" + reverse('webchat:index'))
+            return HttpResponseRedirect(reverse('admin:index') + "login/?next=" + request.path)
         return super(Index, self).dispatch(request, *args, **kwargs)
 
 
@@ -28,7 +28,7 @@ class Transcript(generic.TemplateView):
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated():
-            return HttpResponseRedirect(reverse('admin:index') + "login/?next=" + reverse('webchat:index'))
+            return HttpResponseRedirect(reverse('admin:index') + "login/?next=" + request.path)
         return super(Transcript, self).dispatch(request, *args, **kwargs)
 
     def get_context_data(self, **kwargs):
@@ -51,7 +51,7 @@ class Success(generic.DetailView):
 
     def dispatch(self, request, *args, **kwargs):
         if not request.user.is_authenticated():
-            return HttpResponseRedirect(reverse('admin:index') + "login/?next=" + reverse('webchat:index'))
+            return HttpResponseRedirect(reverse('admin:index') + "login/?next=" + request.path)
         return super(Success, self).dispatch(request, *args, **kwargs)
 
     def http_method_not_allowed(self, request, *args, **kwargs):

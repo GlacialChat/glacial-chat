@@ -82,6 +82,7 @@ WSGI_APPLICATION = 'Chat.wsgi.application'
 DATABASES = {'default': dj_database_url.config(conn_max_age=500)}
 # Change 'default' database configuration with $DATABASE_URL.
 
+DEFAULT_FILE_STORAGE = 'Chat.storage.DropBoxStorage'
 
 AUTH_PASSWORD_VALIDATORS = [
     {

@@ -9,3 +9,9 @@ class ChatLog(models.Model):
     pub_date = models.DateTimeField("date published")
     user = models.ForeignKey(User)
     message = models.TextField()
+
+
+class FileLog(models.Model):
+    pub_date = models.DateTimeField("date published")
+    user = models.ForeignKey(User)
+    file = models.FileField()
