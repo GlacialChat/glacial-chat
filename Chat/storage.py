@@ -45,6 +45,10 @@ class DropBoxStorage(Storage):
         except ApiError:
             return False
 
+    def url(self, name):
+        media = self.client.files_get_temporary_link(join(self.root_path, basename(name)))
+        return media.link
+
     def _open(self, name, mode='rb'):
         file = DropBoxFile(join(self.root_path, basename(name)), self.client)
         return file
