@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 import dj_database_url
 
+DROPBOX_OAUTH2_TOKEN = os.getenv('DROPBOX_OAUTH2_TOKEN', None)
+DROPBOX_ROOT_PATH = os.getenv('DROPBOX_ROOT_PATH', None)
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
@@ -28,6 +31,7 @@ DEBUG = True
 # Application definition
 
 INSTALLED_APPS = [
+    ''
     'webchat.apps.WebchatConfig',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -69,6 +73,9 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
             ],
             'debug': DEBUG,
+            'libraries': {
+                'file_name_filter': 'webchat.templatetags.file_name_filter',
+            },
         },
     },
 ]

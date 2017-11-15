@@ -4,7 +4,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.utils import timezone
 
-from .models import ChatLog
+from .models import ChatLog, FileLog
 
 
 class Index(generic.TemplateView):
@@ -20,6 +20,29 @@ class Index(generic.TemplateView):
         if not request.user.is_authenticated():
             return HttpResponseRedirect(reverse('admin:index') + "login/?next=" + request.path)
         return super(Index, self).dispatch(request, *args, **kwargs)
+
+
+class Files(generic.TemplateView):
+    model = FileLog
+    template_name = 'webchat/files.html'
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated():
+            return HttpResponseRedirect(reverse('admin:index') + "login/?next=" + request.path)
+        return super(Files, self).dispatch(request, *args, **kwargs)
+
+    def get_context_data(self, **kwargs):
+        context = super(Files, self).get_context_data(**kwargs)
+        context['filelogs'] = self.model.objects.order_by('-pub_date')
+        return context
+
+    def post(self, request, *args, **kwargs):
+        file = request.FILES.get('file', None)
+        if file is None:
+            return HttpResponseRedirect(reverse('webchat:index'))
+        obj = self.model(user=request.user, pub_date=timezone.now(), file=file)
+        obj.save()
+        return HttpResponseRedirect(reverse('webchat:files'))
 
 
 class Transcript(generic.TemplateView):
@@ -40,8 +63,8 @@ class Transcript(generic.TemplateView):
         message = request.POST.get("message", None)
         if message is None:
             return HttpResponseRedirect(reverse('webchat:index'))
-        chat = ChatLog(message=message, user=request.user, pub_date=timezone.now())
-        chat.save()
+        obj = self.model(message=message, user=request.user, pub_date=timezone.now())
+        obj.save()
         return HttpResponseRedirect(reverse('webchat:transcript'))
 
 

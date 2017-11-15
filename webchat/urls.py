@@ -8,4 +8,5 @@ urlpatterns = [
     url(r'^$', views.Index.as_view(), name='index'),
     url(r'success/$', views.Success.as_view(), name='success'),
     url(r'transcript/$', views.Transcript.as_view(), name='transcript'),
+    url(r'files/$', views.Files.as_view(), name='files'),
 ]

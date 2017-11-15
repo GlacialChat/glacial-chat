@@ -6,22 +6,26 @@ from django.core.files.base import File
 
 from tempfile import NamedTemporaryFile
 from os.path import join, basename
-
+from re import sub
 
 from dropbox import Dropbox
 from dropbox.exceptions import ApiError
 
 
 class DropBoxFile(File):
-    def __init__(self, name, client):
-        self.name = name
+    def __init__(self, _name, client):
+        self._name = _name
         self.client = client
         self._file = None
 
     @property
+    def name(self):
+        return sub(r"(\w+)(_\w{0,7})(\.\w+)?$", r"\1\3", self._name)
+
+    @property
     def file(self):
         self._file = NamedTemporaryFile()
-        self.client.files_download_to_file(self._file.name, self.name)
+        self.client.files_download_to_file(self._file.name, self._name)
         self._file.flush()
         self._file.seek(0)
         return self._file

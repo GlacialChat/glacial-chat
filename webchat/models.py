@@ -12,6 +12,8 @@ class ChatLog(models.Model):
 
 
 class FileLog(models.Model):
+    def f_name(self):
+        return self.file.name
     pub_date = models.DateTimeField("date published")
     user = models.ForeignKey(User)
     file = models.FileField()
