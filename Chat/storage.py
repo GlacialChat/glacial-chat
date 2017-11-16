@@ -6,7 +6,7 @@ from django.core.files.base import File
 
 from tempfile import NamedTemporaryFile
 from os.path import join, basename
-from re import sub
+from re import match
 
 from dropbox import Dropbox
 from dropbox.exceptions import ApiError
@@ -20,7 +20,10 @@ class DropBoxFile(File):
 
     @property
     def name(self):
-        return sub(r"(\w+)(_\w{0,7})(\.\w+)?$", r"\1\3", self._name)
+        mtc = match(r".*?([a-zA-Z0-9_-]+?)(_[a-zA-Z0-9]{7})?(\.[a-zA-Z0-9\._]+)?$", self._name)
+        if mtc is None:
+            return "Improperly_named.file"
+        return mtc.group(1) + mtc.group(3)
 
     @property
     def file(self):

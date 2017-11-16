@@ -1,7 +1,4 @@
 {% extends 'webchat/base.html' %}
-{% load file_name_filter %}
-
-
 
 {% block content %}
 <main role="main" class="container">
@@ -9,7 +6,7 @@
     {% for filelog in filelogs %}
         <div id="message-{{ forloop.counter }}" class="logs">
             <a class="lead disabled" href="#">{{ filelog.user }}, {{ filelog.pub_date }}:</a>
-          <p class="lead ">{{ filelog.file.name|norm_name }}, <a href="{{ filelog.file.url }}">Download</a></p>
+          <p class="lead ">{{ filelog.file.file.name }}, <a href="{{ filelog.file.url }}">Download</a></p>
         </div>
         <hr />
     {% empty %}
