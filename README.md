@@ -1,53 +1,83 @@
-# Heroku Django Starter Template
+Glacial Chat
+---
 
-An utterly fantastic project starter template for Django 1.11.
+This is a personal app developed by Zihao Xu. This `django` application utilizes
+`dropbox` api to store files, and `heroku` to deploy the app.
 
-## Features
 
-- Production-ready configuration for Static Files, Database Settings, Gunicorn, etc.
-- Enhancements to Django's static file serving functionality via WhiteNoise.
-- Latest Python 3.6 runtime environment. 
+Before you start, I would highly recommend creating a visual environment.
 
-## How to Use
+    pip install virtualenv
+    virtualenv venv
+If you're using Windows:
 
-To use this project, follow these steps:
+    venv\Scripts\activate
 
-1. Create your working environment.
-2. Install Django (`$ pip install django`)
-3. Create a new project using this template
+If not:
 
-## Creating Your Project
+    source venv/bin/activate
 
-Using this template to create a new Django app is easy::
+----
 
-    $ django-admin.py startproject --template=https://github.com/heroku/heroku-django-template/archive/master.zip --name=Procfile helloworld
-
-(If this doesn't work on windows, replace `django-admin.py` with `django-admin`)
-
-You can replace ``helloworld`` with your desired project name.
-
-## Deployment to Heroku
-
+ 1. To begin, clone this `git` repository by using the following command:
+ 
+ 
+    cd venv
+    git clone https://github.com/GlacialChat/glacial-chat.git
+    cd Chat
+    pip install -r requirements.txt
+ 
+ 2. After successfully cloning the repository, you will need to set a few environment variables:
+ 
+     
+     DATABASE_URL:         # A heroku postgresql database url to connecting to the database
+     DROPBOX_OAUTH2_TOKEN: # The AUTH TOKEN for your DropBox api
+     DROPBOX_ROOT_PATH:    # THe root path to store the files in the DropBox
+ 
+ 3. Create a `heroku` account, you may register a free account at [heroku login][1].
+ 
+ 4. You will need to install [heroku CLI][3] to use the command-line interface, which will make your life a lot
+ easier.
+ 
+ 5. If you're still having issues with`heroku`, you might want to check `heroku`'s introduction deploying
+ with [python and django framework][4].
+ 
+ 6. Create a DropBox API access token [here][5].
+ 7. After you have everything setup, go in terminal type in the following commands (starts with `$`):
+ 
+ 
     $ git init
-    $ git add -A
-    $ git commit -m "Initial commit"
-
+    ...
+    $ git add .
+    $ git commit -m "initial commit"
+    ...
+    $ heroku login
+    Enter your Heroku credentials.
+    ...
     $ heroku create
+    Creating intense-falls-9163... done, stack is cedar
+    http://intense-falls-9163.herokuapp.com/ | git@heroku.com:intense-falls-9163.git
+    Git remote heroku added
+    $ heroku addons:create heroku-postgresql:hobby-dev 
     $ git push heroku master
-
-    $ heroku run python manage.py migrate
-
-See also, a [ready-made application](https://github.com/heroku/python-getting-started), ready to deploy.
-
-## Using Python 2.7?
-
-Just update `runtime.txt` to `python-2.7.13` (no trailing spaces or newlines!).
-
-
-## License: MIT
-
-## Further Reading
-
-- [Gunicorn](https://warehouse.python.org/project/gunicorn/)
-- [WhiteNoise](https://warehouse.python.org/project/whitenoise/)
-- [dj-database-url](https://warehouse.python.org/project/dj-database-url/)
+    ...
+    -----> Python app detected
+    ...
+    -----> Launching... done, v7
+           https://intense-falls-9163.herokuapp.com/ deployed to Heroku
+    ...
+    $ heroku run python manage.py createsuperuser
+    Follow the onscreen prompt
+    ...
+ 8. You're all set! type `heroku open` to view your app in a browser.
+ 
+ If you ever want to run a test server on your local computer, you can do so by typing
+ the following in the terminal:
+     
+     $ heroku local web
+ 
+  [1]: https://id.heroku.com/login
+  [2]: https://dashboard.heroku.com/
+  [3]: https://devcenter.heroku.com/articles/heroku-cli
+  [4]: https://devcenter.heroku.com/articles/deploying-python
+  [5]: https://www.dropbox.com/developers/apps/create
