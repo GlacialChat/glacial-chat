@@ -21,15 +21,18 @@ If not:
 
  1. To begin, clone this `git` repository by using the following command:
  
- 
-    cd venv
-    git clone https://github.com/GlacialChat/glacial-chat.git
-    cd Chat
-    pip install -r requirements.txt
+
+In terminal:
+
+    $ cd venv
+    $ git clone https://github.com/GlacialChat/glacial-chat.git
+    $ cd Chat
+    $ pip install -r requirements.txt
  
  2. After successfully cloning the repository, you will need to set a few environment variables:
  
-     
+Environment variables:
+
      DATABASE_URL:         # A heroku postgresql database url to connecting to the database
      DROPBOX_OAUTH2_TOKEN: # The AUTH TOKEN for your DropBox api
      DROPBOX_ROOT_PATH:    # THe root path to store the files in the DropBox
@@ -45,6 +48,8 @@ If not:
  6. Create a DropBox API access token [here][5].
  7. After you have everything setup, go in terminal type in the following commands (starts with `$`):
  
+ 
+In terminal:
  
     $ git init
     ...
@@ -73,6 +78,8 @@ If not:
  
  If you ever want to run a test server on your local computer, you can do so by typing
  the following in the terminal:
+     
+ In terminal:
      
      $ heroku local web
  
