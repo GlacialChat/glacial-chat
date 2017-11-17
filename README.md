@@ -1,7 +1,10 @@
 Glacial Chat
 ---
 
-This is a personal app developed by Zihao Xu. This `django` application utilizes
+This is a personal app developed by Zihao Xu. (Sorry, this is not an open
+project, and we are not looking for active contributions). 
+
+This `django` application utilizes
 `dropbox` api to store files, and `heroku` to deploy the app.
 
 

@@ -1,12 +1,7 @@
 {% extends 'webchat/base.html' %}
 
-{% block links %}
-<li class="nav-item">
-    <a class="nav-link" href="{% url 'admin:index' %}">Admin</a>
-</li>
-{% endblock %}
-
 {% block content %}
+<!-- Redirects back to index site after 5 seconds -->
 <main role="main" class="container">
     <div class="jumbotron">
         <p class="lead message"></p>
@@ -16,6 +11,7 @@
 {% endblock %}
 
 {% block scripts %}
+<!-- JS script for counting down seconds -->
 <script>
     function sleep(ms) {
         return new Promise(resolve => setTimeout(resolve, ms));

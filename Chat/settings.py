@@ -1,26 +1,18 @@
 """
-Django settings for Chat project on Heroku. For more info, see:
-https://github.com/heroku/heroku-django-template
-
-For more information on this file, see
-https://docs.djangoproject.com/en/1.11/topics/settings/
-
-For the full list of settings and their values, see
-https://docs.djangoproject.com/en/1.11/ref/settings/
+Settings and configurations of Chat project
 """
 
 import os
 import dj_database_url
 
+
+# Retrieve the environment variables for DropBox setup
 DROPBOX_OAUTH2_TOKEN = os.getenv('DROPBOX_OAUTH2_TOKEN', None)
 DROPBOX_ROOT_PATH = os.getenv('DROPBOX_ROOT_PATH', None)
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "bi25(nee^19cn@#tmyo92ix$&mf19mllx@p^u_an0#6$_7#h%4"
@@ -29,7 +21,6 @@ SECRET_KEY = "bi25(nee^19cn@#tmyo92ix$&mf19mllx@p^u_an0#6$_7#h%4"
 DEBUG = True
 
 # Application definition
-
 INSTALLED_APPS = [
     ''
     'webchat.apps.WebchatConfig',
@@ -38,9 +29,6 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    # Disable Django's own staticfiles handling in favour of WhiteNoise, for
-    # greater consistency between gunicorn and `./manage.py runserver`. See:
-    # http://whitenoise.evans.io/en/stable/django.html#using-whitenoise-in-development
     'whitenoise.runserver_nostatic',
     'django.contrib.staticfiles',
 ]
@@ -56,6 +44,7 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
+# The root urls location, currently set to Chat/urls.py
 ROOT_URLCONF = 'Chat.urls'
 
 TEMPLATES = [
@@ -73,8 +62,9 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
             ],
             'debug': DEBUG,
+            # Include the custom filter from webchat app
             'libraries': {
-                'file_name_filter': 'webchat.templatetags.file_name_filter',
+                'webchat_filters': 'webchat.templatetags.webchat_filters',
             },
         },
     },
@@ -93,10 +83,13 @@ DATABASES = {
     }
 }
 
-DATABASES['default'].update(dj_database_url.config(conn_max_age=500))
 # Change 'default' database configuration with $DATABASE_URL.
+DATABASES['default'].update(dj_database_url.config(conn_max_age=500))
 
+
+# Store files using Chat/storage.py DropBoxStorage storage
 DEFAULT_FILE_STORAGE = 'Chat.storage.DropBoxStorage'
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -141,4 +134,5 @@ STATICFILES_DIRS = [
 
 # Simplified static file serving.
 # https://warehouse.python.org/project/whitenoise/
+
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

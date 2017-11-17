@@ -1,6 +1,7 @@
 {% extends 'webchat/base.html' %}
 
 {% block styles %}
+<!-- sub-site specific styles -->
 <style>
   .ctx-link {
       display: inline-block;
@@ -29,6 +30,7 @@
 
 {% block content %}
 <main role="main" class="container">
+    <!-- Shortcut buttons on bottom left -->
     <ul class="ctx-link">
         <li>
             <a class="btn btn-success disabled" href="#">Top</a>
@@ -40,6 +42,7 @@
     </ul>
 
     {% for chatlog in chatlogs %}
+    <!-- Individual chat log box -->
     <div class="jumbotron" id="log-{{ forloop.counter }}">
         <h1>{{ chatlog.user }},</h1>
         <h5 class="lead">On {{ chatlog.pub_date }} has said:</h5>
@@ -55,6 +58,7 @@
 </main>
 
 <main role="main" class="container">
+    <!-- Submit message form, redirects to success url -->
     <form action="{% url 'webchat:success' %}" id="input-box" method="post">
         {% csrf_token %}
         <textarea class="form-control" name="message" id="message" style="resize:none" rows=7 required></textarea>

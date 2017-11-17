@@ -1,3 +1,7 @@
+"""
+Configure the webchat application
+"""
+
 from django.apps import AppConfig
 
 

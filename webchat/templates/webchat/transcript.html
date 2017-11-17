@@ -1,6 +1,7 @@
 {% extends 'webchat/base.html' %}
 
 {% block styles %}
+<!-- sub-site specific styles -->
 <style>
     .logs {
     }
@@ -28,6 +29,7 @@
 
 {% block content %}
 <main role="main" class="container">
+    <!-- Shortcut buttons on bottom left -->
     <ul class="ctx-link">
         <li>
             <a class="btn btn-success disabled" href="#">Top</a>
@@ -39,6 +41,7 @@
     </ul>
     <div class="container jumbotron logs-container">
     {% for chatlog in chatlogs %}
+        <!-- Individual chat logs in an aligned format -->
         <div id="message-{{ forloop.counter }}" class="logs">
             <a class="lead disabled" href="#">{{ chatlog.user }}, {{ chatlog.pub_date }}:</a>
             <p class="lead ">{{ chatlog.message }}</p>
@@ -47,6 +50,7 @@
     {% endfor %}
     </div>
 
+    <!-- Submit message form -->
     <form id="input-box" action="" method="post">
         {% csrf_token %}
         <textarea class="form-control" name="message" id="message" style="resize:none" rows=7 required></textarea>

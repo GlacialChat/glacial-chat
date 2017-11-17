@@ -3,8 +3,9 @@ from django.contrib.auth import admin
 
 
 class WCAdminChat(AdminSite):
-    site_header = "Web Chat"
-    site_title = "Web Chat"
+    site_header = "Glacial Chat"
+    site_title = "Glacial Chat"
+    index_title = "Manage Glacial Chat"
 
 
 admin_site = WCAdminChat(name='wcadmin')

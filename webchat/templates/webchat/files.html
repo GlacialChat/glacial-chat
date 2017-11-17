@@ -4,6 +4,7 @@
 <main role="main" class="container">
     <div class="container jumbotron logs-container">
     {% for filelog in filelogs %}
+        <!-- individual file log links -->
         <div id="message-{{ forloop.counter }}" class="logs">
             <a class="lead disabled" href="#">{{ filelog.user }}, {{ filelog.pub_date }}:</a>
           <p class="lead ">{{ filelog.file.file.name }}, <a href="{{ filelog.file.url }}">Download</a></p>
@@ -14,11 +15,18 @@
     {% endfor %}
     </div>
 
+    <!-- Submit file form -->
     <form id="input-box" method="post" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form-group">
+            <label for="filename">Input file name here:</label>
+            <input class="form-control" type="text" id="filename" name="name" placeholder="Leave blank if use file name" />
+        </div>
+        <div class="form-group">
             <label for="fileupload">Upload your file here:</label>
             <input type="file" class="form-control-file" id="fileupload" name="file" />
+        </div>
+        <div class="form-group">
             <button class="btn btn-lg btn-success" type="submit" name="submit" style="margin-left: 0.2rem; margin-top: 0.5rem">Upload</button>
         </div>
     </form>
