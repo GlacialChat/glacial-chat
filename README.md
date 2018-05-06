@@ -1,7 +1,7 @@
 Glacial Chat
 ---
 
-This is a personal app developed by Zihao Xu. (Sorry, this is not an open
+This is a personal app developed by TAKU. (Sorry, this is not an open
 project, and we are not looking for active contributions). 
 
 This `django` application utilizes
